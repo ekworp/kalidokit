@@ -11,26 +11,26 @@ import { PI } from "./../constants";
 export const calcArms = (lm: Results) => {
     //Pure Rotation Calculations
     const UpperArm = {
-        r: Vector.findRotation(lm[11], lm[13]),
-        l: Vector.findRotation(lm[12], lm[14]),
+        l: Vector.findRotation(lm[11], lm[13]),
+        r: Vector.findRotation(lm[12], lm[14]),
     };
-    UpperArm.r.y = Vector.angleBetween3DCoords(lm[12], lm[11], lm[13]);
-    UpperArm.l.y = Vector.angleBetween3DCoords(lm[11], lm[12], lm[14]);
+    UpperArm.l.y = Vector.angleBetween3DCoords(lm[12], lm[11], lm[13]);
+    UpperArm.r.y = Vector.angleBetween3DCoords(lm[11], lm[12], lm[14]);
 
     const LowerArm = {
-        r: Vector.findRotation(lm[13], lm[15]),
-        l: Vector.findRotation(lm[14], lm[16]),
+        l: Vector.findRotation(lm[13], lm[15]),
+        r: Vector.findRotation(lm[14], lm[16]),
     };
-    LowerArm.r.y = Vector.angleBetween3DCoords(lm[11], lm[13], lm[15]);
-    LowerArm.l.y = Vector.angleBetween3DCoords(lm[12], lm[14], lm[16]);
-    LowerArm.r.z = clamp(LowerArm.r.z, -2.14, 0);
+    LowerArm.l.y = Vector.angleBetween3DCoords(lm[11], lm[13], lm[15]);
+    LowerArm.r.y = Vector.angleBetween3DCoords(lm[12], lm[14], lm[16]);
     LowerArm.l.z = clamp(LowerArm.l.z, -2.14, 0);
+    LowerArm.r.z = clamp(LowerArm.r.z, -2.14, 0);
     const Hand = {
-        r: Vector.findRotation(
+        l: Vector.findRotation(
             Vector.fromArray(lm[15]),
             Vector.lerp(Vector.fromArray(lm[17]), Vector.fromArray(lm[19]), 0.5)
         ),
-        l: Vector.findRotation(
+        r: Vector.findRotation(
             Vector.fromArray(lm[16]),
             Vector.lerp(Vector.fromArray(lm[18]), Vector.fromArray(lm[20]), 0.5)
         ),
